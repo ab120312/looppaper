@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LoopPaper: Live Video Wallpaper for Android</title>
+<meta name="description" content="Turn your own videos, GIFs and photos into a live wallpaper on Android. 123 transitions, a clock behind your subject, playlists that change on their own. Free, no ads, no account.">
+<link rel="canonical" href="https://ab120312.github.io/looppaper/">
+<link rel="icon" href="favicon.png" type="image/png">
+<meta name="theme-color" content="#121212">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LoopPaper: Live Video Wallpaper for Android">
+<meta property="og:description" content="Your videos, GIFs and photos as a living wallpaper. 123 transitions. Free on Google Play, no ads.">
+<meta property="og:image" content="https://ab120312.github.io/looppaper/img/og.jpg">
+<meta property="og:url" content="https://ab120312.github.io/looppaper/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LoopPaper: Video Wallpaper",
+  "operatingSystem": "Android",
+  "applicationCategory": "LifestyleApplication",
+  "description": "Turn your own videos, GIFs and photos into a live wallpaper on Android, with 123 transitions, playlists and a clock behind your subject.",
+  "image": "https://ab120312.github.io/looppaper/img/icon-192.png",
+  "url": "https://ab120312.github.io/looppaper/",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=app.looppaper",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How do I set a video as my wallpaper on Android?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Install LoopPaper, tap Choose, pick any video or GIF from your phone, watch it loop in the preview, then tap Set wallpaper. You can also tap Share on a video in Gallery or Google Photos and pick LoopPaper."}},
+    {"@type": "Question", "name": "Is LoopPaper free?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Setting any video, GIF or photo as your live wallpaper is free, with no ads, no watermark and no account. LoopPaper Plus is an optional one-time purchase that unlocks unlimited playlists, all 123 transitions and the extra effects."}},
+    {"@type": "Question", "name": "Can my wallpaper change automatically?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Make a playlist of videos, GIFs and photos and LoopPaper switches between them on its own, with a transition between each one, and shuffle never repeats until everything has played."}},
+    {"@type": "Question", "name": "Does a live wallpaper drain the battery?",
+     "acceptedAnswer": {"@type": "Answer", "text": "LoopPaper rests whenever your screen is off and can pause in battery saver, so it only works while you are looking at it."}},
+    {"@type": "Question", "name": "Are my photos uploaded anywhere?",
+     "acceptedAnswer": {"@type": "Answer", "text": "No. Your files stay on your phone. LoopPaper never uploads them, and everything it does to a photo runs on the phone."}}
+  ]
+}
+</script>
+<style>
+@font-face { font-family: "Fraunces"; src: url(fonts/fraunces.ttf) format("truetype"); font-display: swap; }
+@font-face { font-family: "Outfit"; src: url(fonts/outfit.ttf) format("truetype"); font-display: swap; }
+:root { --bg:#121212; --card:#1c1b19; --text:#f3efe8; --text2:#b8b3ab; --honey:#e8b86d; --onhoney:#1a1408; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:"Outfit",system-ui,sans-serif; font-size:18px; line-height:1.55; }
+a { color:var(--honey); }
+.wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+header { padding:22px 0; display:flex; align-items:center; gap:12px; }
+header img { width:40px; height:40px; border-radius:10px; }
+header b { font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
+.hero { display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding:36px 0 56px; }
+h1 { font-family:"Fraunces",serif; font-weight:450; font-size:clamp(36px,5.4vw,60px); line-height:1.08; margin:0 0 18px; }
+h1 em { color:var(--honey); font-style:normal; }
+.lead { color:var(--text2); font-size:20px; margin:0 0 28px; }
+.cta { display:inline-flex; align-items:center; gap:10px; background:var(--honey); color:var(--onhoney); font-weight:600; padding:16px 26px; border-radius:999px; text-decoration:none; font-size:18px; }
+.cta:hover { filter:brightness(1.07); }
+.small { color:var(--text2); font-size:15px; margin-top:12px; }
+.phone { justify-self:center; width:min(320px,80vw); border-radius:44px; border:10px solid #34312d; overflow:hidden; box-shadow:0 30px 80px rgba(232,184,109,.15); }
+.phone img { display:block; width:100%; height:auto; }
+h2 { font-family:"Fraunces",serif; font-weight:450; font-size:clamp(28px,3.6vw,40px); margin:0 0 20px; }
+section { padding:48px 0; border-top:1px solid #2a2825; }
+.video { position:relative; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#000; }
+.video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.shots { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:12px; }
+.shots img { flex:0 0 auto; width:min(240px,62vw); height:auto; border-radius:18px; scroll-snap-align:start; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.card { background:var(--card); border-radius:20px; padding:22px; }
+.card h3 { margin:0 0 6px; font-size:19px; color:var(--honey); font-weight:600; }
+.card p { margin:0; color:var(--text2); font-size:16px; }
+details { background:var(--card); border-radius:16px; padding:16px 20px; margin-bottom:12px; }
+summary { cursor:pointer; font-weight:600; }
+details p { color:var(--text2); margin:10px 0 0; }
+footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px solid #2a2825; }
+@media (max-width:760px) { .hero { grid-template-columns:1fr; padding-top:16px; } .phone { order:-1; width:min(260px,70vw); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="img/icon-192.png" alt="LoopPaper icon" width="40" height="40"><b>LoopPaper</b></header>
+
+  <div class="hero">
+    <div>
+      <h1>Your videos and photos as a <em>live wallpaper</em> for Android.</h1>
+      <p class="lead">Pick any video, GIF or photo on your phone and watch it loop on your home screen. Make a playlist and your wallpaper changes on its own, with 123 transitions between each one.</p>
+      <a class="cta" href="https://play.google.com/store/apps/details?id=app.looppaper&amp;utm_source=website&amp;utm_medium=hero">Get it free on Google Play</a>
+      <p class="small">No ads. No account. Your files never leave your phone.</p>
+    </div>
+    <div class="phone"><img src="img/hero.webp" alt="LoopPaper live wallpaper behind the apps on an Android home screen" width="540" height="1080"></div>
+  </div>
+
+  <section>
+    <h2>See it in motion</h2>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/9yVl9bKPXXo" title="LoopPaper live video wallpaper trailer" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+  </section>
+
+  <section>
+    <h2>123 transitions between your pictures</h2>
+    <div class="shots">
+      <img src="img/shot02.webp" alt="Black hole transition between two wallpapers" loading="lazy" width="540" height="960">
+      <img src="img/shot03.webp" alt="Lava transition flowing into the next photo" loading="lazy" width="540" height="960">
+      <img src="img/shot04.webp" alt="Glass smash transition over a mountain photo" loading="lazy" width="540" height="960">
+      <img src="img/shot05.webp" alt="Lightning transition over the mountains" loading="lazy" width="540" height="960">
+      <img src="img/shot06.webp" alt="LoopPaper transition picker with groups like water, fire, anime and retro" loading="lazy" width="540" height="960">
+      <img src="img/shot07.webp" alt="One-tap looks in LoopPaper Plus settings" loading="lazy" width="540" height="960">
+      <img src="img/shot08.webp" alt="LoopPaper wallpaper on the lock screen with the clock" loading="lazy" width="540" height="960">
+    </div>
+  </section>
+
+  <section>
+    <h2>What it does</h2>
+    <div class="grid">
+      <div class="card"><h3>Video wallpaper</h3><p>Any video or GIF on your phone, any length. See the loop before you set it, trim it and pick where it starts.</p></div>
+      <div class="card"><h3>Wallpaper changer</h3><p>Playlists of videos, GIFs and photos that change on their own, with shuffle that never repeats.</p></div>
+      <div class="card"><h3>123 transitions</h3><p>Water, lava, glass, sand, black hole, anime, comic, retro and more, with real physics.</p></div>
+      <div class="card"><h3>Photos that come alive</h3><p>The person or pet in your photo breathes, blinks and leans toward your finger.</p></div>
+      <div class="card"><h3>A clock behind your subject</h3><p>Flagship-style clock styles, placed around or behind the person in your picture.</p></div>
+      <div class="card"><h3>Made for foldables</h3><p>A different playlist on the inner and cover screens, book mode and tabletop.</p></div>
+      <div class="card"><h3>Easy on the battery</h3><p>Rests whenever your screen is off and can pause in battery saver.</p></div>
+      <div class="card"><h3>Private</h3><p>No ads, no account, no tracking. Your photos stay on your phone.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Questions</h2>
+    <details><summary>How do I set a video as my wallpaper on Android?</summary><p>Install LoopPaper, tap Choose, pick any video or GIF from your phone, watch it loop in the preview, then tap Set wallpaper. You can also tap Share on a video in Gallery or Google Photos and pick LoopPaper.</p></details>
+    <details><summary>Is LoopPaper free?</summary><p>Yes. Setting any video, GIF or photo as your live wallpaper is free, with no ads, no watermark and no account. LoopPaper Plus is an optional one-time purchase that unlocks unlimited playlists, all 123 transitions and the extra effects. The 7-day trial only starts when you tap Start trial and never turns into a subscription.</p></details>
+    <details><summary>Can my wallpaper change automatically?</summary><p>Yes. Make a playlist of videos, GIFs and photos and LoopPaper switches between them on its own, with a transition between each one.</p></details>
+    <details><summary>Does a live wallpaper drain the battery?</summary><p>LoopPaper rests whenever your screen is off and can pause in battery saver, so it only works while you are looking at it.</p></details>
+    <details><summary>Are my photos uploaded anywhere?</summary><p>No. Your files stay on your phone. LoopPaper never uploads them, and everything it does to a photo runs on the phone.</p></details>
+    <p style="margin-top:28px"><a class="cta" href="https://play.google.com/store/apps/details?id=app.looppaper&amp;utm_source=website&amp;utm_medium=faq">Get LoopPaper on Google Play</a></p>
+  </section>
+
+  <footer>
+    LoopPaper · <a href="https://sites.google.com/view/looppaper-privacy/home">Privacy policy</a> · <a href="mailto:looppaper.support@gmail.com">looppaper.support@gmail.com</a><br>
+    Google Play and the Google Play logo are trademarks of Google LLC.
+  </footer>
+</div>
+</body>
+</html>
