@@ -103,11 +103,12 @@ html { scroll-behavior: smooth; }
 body { margin:0; background:var(--bg); color:var(--text); font-family:"Outfit",system-ui,sans-serif; font-size:18px; line-height:1.55; }
 a { color:var(--honey); }
 .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
-header { padding:22px 0; display:flex; align-items:center; gap:12px; }
+header { padding:22px 0; display:flex; flex-wrap:wrap; align-items:center; gap:12px; min-width:0; }
+.lang { min-width:0; }
 header img { width:40px; height:40px; border-radius:10px; }
 header b { font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
 .lang { margin-left:auto; }
-.lang select { background:var(--card); color:var(--text); border:1px solid #34312d; border-radius:999px; padding:8px 12px; font:inherit; font-size:15px; max-width:44vw; }
+.lang select { background:var(--card); color:var(--text); border:1px solid #34312d; border-radius:999px; padding:8px 12px; font:inherit; font-size:15px; max-width:40vw; min-width:0; }
 .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
 .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding:36px 0 56px; }
 h1 { font-family:"Fraunces",serif; font-weight:450; font-size:clamp(36px,5.4vw,60px); line-height:1.08; margin:0 0 18px; }
@@ -124,7 +125,7 @@ section { padding:48px 0; border-top:1px solid #2a2825; }
 .video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
 .shots { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:12px; }
 .shots img { flex:0 0 auto; width:min(240px,62vw); height:auto; border-radius:18px; scroll-snap-align:start; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:18px; }
 .card { background:var(--card); border-radius:20px; padding:22px; }
 .card h3 { margin:0 0 6px; font-size:19px; color:var(--honey); font-weight:600; }
 .card p { margin:0; color:var(--text2); font-size:16px; }
@@ -133,6 +134,16 @@ summary { cursor:pointer; font-weight:600; }
 details p { color:var(--text2); margin:10px 0 0; }
 footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px solid #2a2825; }
 @media (max-width:760px) { .hero { grid-template-columns:1fr; padding-top:16px; } .phone { order:-1; width:min(260px,70vw); } }
+.apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:18px; }
+.app { background:var(--card); border-radius:22px; padding:22px; display:flex; flex-direction:column; gap:10px; }
+.app .top { display:flex; align-items:center; gap:14px; }
+.app .top img { width:56px; height:56px; border-radius:14px; }
+.app h3 { margin:0; font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
+.app p { margin:0; color:var(--text2); font-size:16px; flex:1; }
+.app .cta, .appsec .cta { font-size:16px; padding:12px 20px; align-self:flex-start; }
+.note { color:var(--text2); font-size:14px; margin:0; }
+.appsec p.body { color:var(--text2); max-width:760px; margin:0 0 22px; }
+.appsec .acts { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:18px; }
 </style>
 </head>
 <body>
@@ -149,6 +160,15 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
     </div>
     <div class="phone"><img src="../img/hero.webp" alt="Android होम स्क्रीन पर ऐप्स के पीछे LoopPaper लाइव वॉलपेपर" width="540" height="1080"></div>
   </div>
+
+  <section id="apps">
+    <h2>हमारे ऐप्स</h2>
+    <div class="apps">
+      <div class="app"><div class="top"><img src="../img/icon-192.png" alt="" width="56" height="56"><h3>LoopPaper</h3></div><p>आपके वीडियो, GIF और फ़ोटो लाइव वॉलपेपर के रूप में, 123 ट्रांज़िशन के साथ।</p><a class="cta" href="https://play.google.com/store/apps/details?id=app.looppaper&amp;hl=hi&amp;utm_source=website&amp;utm_medium=apps">Google Play पर मुफ़्त पाएँ</a></div>
+      <div class="app"><div class="top"><img src="../img/studio-icon.png" alt="" width="56" height="56"><h3>LoopPaper Studio</h3></div><p>किसी फ़ोटो में जान डालें: चलता आसमान, बहता पानी, ऑरा और भी।</p><a class="cta" href="#studio">LoopPaper Studio ↓</a></div>
+      <div class="app"><div class="top"><img src="../img/loopy-icon.png" alt="" width="56" height="56"><h3>Loopy</h3></div><p>आपकी होम स्क्रीन पर रहने वाला एक मुलायम जेली पालतू। उसे सजाएँ और करतब सिखाएँ।</p><a class="cta" href="#loopy">Loopy ↓</a></div>
+    </div>
+  </section>
 
   <section>
     <h2>इसे चलते हुए देखें</h2>
@@ -183,6 +203,30 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
       <div class="card"><h3>बैटरी पर हल्का</h3><p>स्क्रीन बंद होने पर आराम करता है और बैटरी सेवर में रुक सकता है।</p></div>
       <div class="card"><h3>निजी</h3><p>कोई विज्ञापन नहीं, कोई खाता नहीं, कोई ट्रैकिंग नहीं। आपकी फ़ोटो आपके फ़ोन पर रहती हैं।</p></div>
     </div>
+  </section>
+
+  <section id="studio" class="appsec">
+    <h2>LoopPaper Studio: अपनी फ़ोटो में जान डालें</h2>
+    <p class="body">किसी भी फ़ोटो में आसमान चलाएँ, पानी बहाएँ और बर्फ़ गिराएँ, ऑरा और चमकती आँखें जोड़ें, आसमान को सूर्यास्त या तारों भरी रात से बदलें, और उसे लाइव वॉलपेपर बनाएँ या वीडियो के रूप में शेयर करें। AI आपके फ़ोन पर ऑफ़लाइन चलता है। 3 मुफ़्त बनाएँ; Pro एक बार की ख़रीद है, कोई सब्सक्रिप्शन नहीं।</p>
+    <div class="shots">
+      <img src="../img/studio1.webp" alt="LoopPaper Studio में बनी पहाड़ की फ़ोटो पर गिरती बर्फ़" loading="lazy" width="540" height="960">
+      <img src="../img/studio2.webp" alt="एक टैप में नया सुनहरा सूर्यास्त आसमान" loading="lazy" width="540" height="960">
+      <img src="../img/studio3.webp" alt="वही फ़ोटो रात में चाँद के साथ" loading="lazy" width="540" height="960">
+      <img src="../img/studio4.webp" alt="फ़ोन पर चलने वाले AI से पहाड़ को टैप करके चुनना" loading="lazy" width="540" height="960">
+    </div>
+    <div class="acts"><a class="cta" href="https://groups.google.com/g/looppaper-testers">मुफ़्त टेस्ट से जुड़ें</a><p class="note">Google Play पर टेस्टिंग में। टेस्टर ग्रुप से जुड़ें, फिर: <a href="https://play.google.com/apps/testing/app.looppaper.studio">टेस्टर बनें</a></p></div>
+  </section>
+
+  <section id="loopy" class="appsec">
+    <h2>Loopy: आपकी होम स्क्रीन के लिए एक जेली पालतू</h2>
+    <p class="body">Loopy असली मुलायम-शरीर फ़िज़िक्स वाला एक छोटा जेली दोस्त है। वह पिचकता है, हिलता है, आपके आइकन के बीच से निकलता है और फ़ोन झुकाने पर फिसलता है। उसे रोज़ एक ट्रीट दें और वह करतब सीखता है, ट्रीट पकड़ो खेलें, और उसे रंगों, आकृतियों, चेहरों और टोपियों से सजाएँ।</p>
+    <div class="shots">
+      <img src="../img/loopy1.webp" alt="होम स्क्रीन पर बैठा Loopy" loading="lazy" width="540" height="960">
+      <img src="../img/loopy2.webp" alt="आठ आकृतियों में Loopy: दिल, तारा, बिल्ली का बच्चा, भूत और भी" loading="lazy" width="540" height="960">
+      <img src="../img/loopy3.webp" alt="टोपी और चश्मे में सजा Loopy" loading="lazy" width="540" height="960">
+      <img src="../img/loopy4.webp" alt="ट्रीट के पीछे भागता Loopy" loading="lazy" width="540" height="960">
+    </div>
+    <div class="acts"><a class="cta" href="https://groups.google.com/g/looppaper-testers">मुफ़्त टेस्ट से जुड़ें</a><p class="note">Google Play पर टेस्टिंग में। टेस्टर ग्रुप से जुड़ें, फिर: <a href="https://play.google.com/apps/testing/app.looppaper.pet">टेस्टर बनें</a></p></div>
   </section>
 
   <section>

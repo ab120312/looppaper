@@ -103,11 +103,12 @@ html { scroll-behavior: smooth; }
 body { margin:0; background:var(--bg); color:var(--text); font-family:"Outfit",system-ui,sans-serif; font-size:18px; line-height:1.55; }
 a { color:var(--honey); }
 .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
-header { padding:22px 0; display:flex; align-items:center; gap:12px; }
+header { padding:22px 0; display:flex; flex-wrap:wrap; align-items:center; gap:12px; min-width:0; }
+.lang { min-width:0; }
 header img { width:40px; height:40px; border-radius:10px; }
 header b { font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
 .lang { margin-left:auto; }
-.lang select { background:var(--card); color:var(--text); border:1px solid #34312d; border-radius:999px; padding:8px 12px; font:inherit; font-size:15px; max-width:44vw; }
+.lang select { background:var(--card); color:var(--text); border:1px solid #34312d; border-radius:999px; padding:8px 12px; font:inherit; font-size:15px; max-width:40vw; min-width:0; }
 .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
 .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding:36px 0 56px; }
 h1 { font-family:"Fraunces",serif; font-weight:450; font-size:clamp(36px,5.4vw,60px); line-height:1.08; margin:0 0 18px; }
@@ -124,7 +125,7 @@ section { padding:48px 0; border-top:1px solid #2a2825; }
 .video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
 .shots { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:12px; }
 .shots img { flex:0 0 auto; width:min(240px,62vw); height:auto; border-radius:18px; scroll-snap-align:start; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:18px; }
 .card { background:var(--card); border-radius:20px; padding:22px; }
 .card h3 { margin:0 0 6px; font-size:19px; color:var(--honey); font-weight:600; }
 .card p { margin:0; color:var(--text2); font-size:16px; }
@@ -133,6 +134,16 @@ summary { cursor:pointer; font-weight:600; }
 details p { color:var(--text2); margin:10px 0 0; }
 footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px solid #2a2825; }
 @media (max-width:760px) { .hero { grid-template-columns:1fr; padding-top:16px; } .phone { order:-1; width:min(260px,70vw); } }
+.apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:18px; }
+.app { background:var(--card); border-radius:22px; padding:22px; display:flex; flex-direction:column; gap:10px; }
+.app .top { display:flex; align-items:center; gap:14px; }
+.app .top img { width:56px; height:56px; border-radius:14px; }
+.app h3 { margin:0; font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
+.app p { margin:0; color:var(--text2); font-size:16px; flex:1; }
+.app .cta, .appsec .cta { font-size:16px; padding:12px 20px; align-self:flex-start; }
+.note { color:var(--text2); font-size:14px; margin:0; }
+.appsec p.body { color:var(--text2); max-width:760px; margin:0 0 22px; }
+.appsec .acts { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:18px; }
 </style>
 </head>
 <body>
@@ -149,6 +160,15 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
     </div>
     <div class="phone"><img src="../img/hero.webp" alt="안드로이드 홈 화면의 앱 뒤에 보이는 LoopPaper 라이브 배경화면" width="540" height="1080"></div>
   </div>
+
+  <section id="apps">
+    <h2>우리 앱</h2>
+    <div class="apps">
+      <div class="app"><div class="top"><img src="../img/icon-192.png" alt="" width="56" height="56"><h3>LoopPaper</h3></div><p>내 동영상, GIF, 사진을 123가지 전환 효과와 함께 라이브 배경화면으로.</p><a class="cta" href="https://play.google.com/store/apps/details?id=app.looppaper&amp;hl=ko&amp;utm_source=website&amp;utm_medium=apps">Google Play에서 무료로 받기</a></div>
+      <div class="app"><div class="top"><img src="../img/studio-icon.png" alt="" width="56" height="56"><h3>LoopPaper Studio</h3></div><p>멈춘 사진에 생명을: 움직이는 하늘, 흐르는 물, 오라 등.</p><a class="cta" href="#studio">LoopPaper Studio ↓</a></div>
+      <div class="app"><div class="top"><img src="../img/loopy-icon.png" alt="" width="56" height="56"><h3>Loopy</h3></div><p>홈 화면에 사는 말랑말랑 젤리 펫. 꾸미고 재주를 가르쳐 보세요.</p><a class="cta" href="#loopy">Loopy ↓</a></div>
+    </div>
+  </section>
 
   <section>
     <h2>움직이는 모습 보기</h2>
@@ -183,6 +203,30 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
       <div class="card"><h3>배터리 절약</h3><p>화면이 꺼지면 쉬고, 절전 모드에서는 멈출 수도 있어요.</p></div>
       <div class="card"><h3>개인정보 보호</h3><p>광고 없음, 계정 없음, 추적 없음. 사진은 휴대폰에만 남아요.</p></div>
     </div>
+  </section>
+
+  <section id="studio" class="appsec">
+    <h2>LoopPaper Studio: 내 사진에 생명을</h2>
+    <p class="body">어떤 사진이든 하늘이 움직이고, 물이 흐르고, 눈이 내리게 하고, 오라와 빛나는 눈을 더하고, 하늘을 노을이나 별밤으로 바꿔서 라이브 배경화면으로 설정하거나 동영상으로 공유하세요. AI는 휴대폰에서 오프라인으로 작동해요. 3개까지 무료, Pro는 한 번 구매로 구독 없음.</p>
+    <div class="shots">
+      <img src="../img/studio1.webp" alt="LoopPaper Studio로 만든 산 사진 위로 내리는 눈" loading="lazy" width="540" height="960">
+      <img src="../img/studio2.webp" alt="탭 한 번으로 바꾼 황금빛 노을 하늘" loading="lazy" width="540" height="960">
+      <img src="../img/studio3.webp" alt="달이 뜬 같은 사진의 밤 버전" loading="lazy" width="540" height="960">
+      <img src="../img/studio4.webp" alt="휴대폰 AI로 산을 탭해서 선택하기" loading="lazy" width="540" height="960">
+    </div>
+    <div class="acts"><a class="cta" href="https://groups.google.com/g/looppaper-testers">무료 테스트 참여하기</a><p class="note">Google Play에서 테스트 중이에요. 테스터 그룹에 가입한 다음: <a href="https://play.google.com/apps/testing/app.looppaper.studio">테스터 되기</a></p></div>
+  </section>
+
+  <section id="loopy" class="appsec">
+    <h2>Loopy: 홈 화면의 젤리 펫</h2>
+    <p class="body">Loopy는 진짜 말랑한 몸 물리로 움직이는 작은 젤리 친구예요. 찌그러지고, 출렁이고, 앱 아이콘 사이로 비집고 들어가고, 휴대폰을 기울이면 미끄러져요. 하루에 한 번 간식을 주면 재주를 배우고, 간식 받기 게임도 하고, 색상, 모양, 얼굴, 모자로 꾸밀 수 있어요.</p>
+    <div class="shots">
+      <img src="../img/loopy1.webp" alt="홈 화면에 앉아 있는 Loopy" loading="lazy" width="540" height="960">
+      <img src="../img/loopy2.webp" alt="8가지 모양의 Loopy: 하트, 별, 고양이, 유령 등" loading="lazy" width="540" height="960">
+      <img src="../img/loopy3.webp" alt="모자와 안경을 쓴 Loopy" loading="lazy" width="540" height="960">
+      <img src="../img/loopy4.webp" alt="간식을 쫓아가는 Loopy" loading="lazy" width="540" height="960">
+    </div>
+    <div class="acts"><a class="cta" href="https://groups.google.com/g/looppaper-testers">무료 테스트 참여하기</a><p class="note">Google Play에서 테스트 중이에요. 테스터 그룹에 가입한 다음: <a href="https://play.google.com/apps/testing/app.looppaper.pet">테스터 되기</a></p></div>
   </section>
 
   <section>

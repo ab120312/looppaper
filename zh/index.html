@@ -103,11 +103,12 @@ html { scroll-behavior: smooth; }
 body { margin:0; background:var(--bg); color:var(--text); font-family:"Outfit",system-ui,sans-serif; font-size:18px; line-height:1.55; }
 a { color:var(--honey); }
 .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
-header { padding:22px 0; display:flex; align-items:center; gap:12px; }
+header { padding:22px 0; display:flex; flex-wrap:wrap; align-items:center; gap:12px; min-width:0; }
+.lang { min-width:0; }
 header img { width:40px; height:40px; border-radius:10px; }
 header b { font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
 .lang { margin-left:auto; }
-.lang select { background:var(--card); color:var(--text); border:1px solid #34312d; border-radius:999px; padding:8px 12px; font:inherit; font-size:15px; max-width:44vw; }
+.lang select { background:var(--card); color:var(--text); border:1px solid #34312d; border-radius:999px; padding:8px 12px; font:inherit; font-size:15px; max-width:40vw; min-width:0; }
 .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
 .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding:36px 0 56px; }
 h1 { font-family:"Fraunces",serif; font-weight:450; font-size:clamp(36px,5.4vw,60px); line-height:1.08; margin:0 0 18px; }
@@ -124,7 +125,7 @@ section { padding:48px 0; border-top:1px solid #2a2825; }
 .video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
 .shots { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:12px; }
 .shots img { flex:0 0 auto; width:min(240px,62vw); height:auto; border-radius:18px; scroll-snap-align:start; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:18px; }
 .card { background:var(--card); border-radius:20px; padding:22px; }
 .card h3 { margin:0 0 6px; font-size:19px; color:var(--honey); font-weight:600; }
 .card p { margin:0; color:var(--text2); font-size:16px; }
@@ -133,6 +134,16 @@ summary { cursor:pointer; font-weight:600; }
 details p { color:var(--text2); margin:10px 0 0; }
 footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px solid #2a2825; }
 @media (max-width:760px) { .hero { grid-template-columns:1fr; padding-top:16px; } .phone { order:-1; width:min(260px,70vw); } }
+.apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:18px; }
+.app { background:var(--card); border-radius:22px; padding:22px; display:flex; flex-direction:column; gap:10px; }
+.app .top { display:flex; align-items:center; gap:14px; }
+.app .top img { width:56px; height:56px; border-radius:14px; }
+.app h3 { margin:0; font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
+.app p { margin:0; color:var(--text2); font-size:16px; flex:1; }
+.app .cta, .appsec .cta { font-size:16px; padding:12px 20px; align-self:flex-start; }
+.note { color:var(--text2); font-size:14px; margin:0; }
+.appsec p.body { color:var(--text2); max-width:760px; margin:0 0 22px; }
+.appsec .acts { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:18px; }
 </style>
 </head>
 <body>
@@ -149,6 +160,15 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
     </div>
     <div class="phone"><img src="../img/hero.webp" alt="安卓主屏幕应用图标后面的 LoopPaper 动态壁纸" width="540" height="1080"></div>
   </div>
+
+  <section id="apps">
+    <h2>我们的应用</h2>
+    <div class="apps">
+      <div class="app"><div class="top"><img src="../img/icon-192.png" alt="" width="56" height="56"><h3>LoopPaper</h3></div><p>把你的视频、GIF 和照片变成动态壁纸，带 123 种转场。</p><a class="cta" href="https://play.google.com/store/apps/details?id=app.looppaper&amp;hl=zh-CN&amp;utm_source=website&amp;utm_medium=apps">在 Google Play 免费下载</a></div>
+      <div class="app"><div class="top"><img src="../img/studio-icon.png" alt="" width="56" height="56"><h3>LoopPaper Studio</h3></div><p>让静态照片动起来：流动的天空、流水、光环等等。</p><a class="cta" href="#studio">LoopPaper Studio ↓</a></div>
+      <div class="app"><div class="top"><img src="../img/loopy-icon.png" alt="" width="56" height="56"><h3>Loopy</h3></div><p>住在主屏幕上的Q弹果冻宠物。给它打扮、教它把戏。</p><a class="cta" href="#loopy">Loopy ↓</a></div>
+    </div>
+  </section>
 
   <section>
     <h2>看看动起来的样子</h2>
@@ -183,6 +203,30 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
       <div class="card"><h3>省电</h3><p>屏幕关闭时休息，省电模式下可以暂停。</p></div>
       <div class="card"><h3>隐私</h3><p>无广告、无需账号、无跟踪。你的照片只留在手机上。</p></div>
     </div>
+  </section>
+
+  <section id="studio" class="appsec">
+    <h2>LoopPaper Studio：让你的照片动起来</h2>
+    <p class="body">让任何照片里的天空流动、流水潺潺、雪花飘落，加上光环和发光的眼睛，把天空换成日落或星空，然后设为动态壁纸或分享为视频。AI 在手机上离线运行。免费制作 3 个；Pro 一次购买，无需订阅。</p>
+    <div class="shots">
+      <img src="../img/studio1.webp" alt="用 LoopPaper Studio 制作的山景照片上飘雪" loading="lazy" width="540" height="960">
+      <img src="../img/studio2.webp" alt="一键换成金色日落天空" loading="lazy" width="540" height="960">
+      <img src="../img/studio3.webp" alt="同一张照片的月夜版本" loading="lazy" width="540" height="960">
+      <img src="../img/studio4.webp" alt="用手机上的 AI 点按选中山峰" loading="lazy" width="540" height="960">
+    </div>
+    <div class="acts"><a class="cta" href="https://groups.google.com/g/looppaper-testers">加入免费测试</a><p class="note">正在 Google Play 测试中。先加入测试者群组，然后： <a href="https://play.google.com/apps/testing/app.looppaper.studio">成为测试者</a></p></div>
+  </section>
+
+  <section id="loopy" class="appsec">
+    <h2>Loopy：主屏幕上的果冻宠物</h2>
+    <p class="body">Loopy 是一个拥有真实软体物理的小果冻朋友。它会压扁、晃动、从应用图标之间挤过去，倾斜手机时还会滑动。每天喂它一次，它就会学会把戏；还能玩接零食游戏，用颜色、形状、表情和帽子给它打扮。</p>
+    <div class="shots">
+      <img src="../img/loopy1.webp" alt="主屏幕上的 Loopy" loading="lazy" width="540" height="960">
+      <img src="../img/loopy2.webp" alt="八种形状的 Loopy：爱心、星星、小猫、幽灵等" loading="lazy" width="540" height="960">
+      <img src="../img/loopy3.webp" alt="戴帽子和眼镜的 Loopy" loading="lazy" width="540" height="960">
+      <img src="../img/loopy4.webp" alt="追着零食跑的 Loopy" loading="lazy" width="540" height="960">
+    </div>
+    <div class="acts"><a class="cta" href="https://groups.google.com/g/looppaper-testers">加入免费测试</a><p class="note">正在 Google Play 测试中。先加入测试者群组，然后： <a href="https://play.google.com/apps/testing/app.looppaper.pet">成为测试者</a></p></div>
   </section>
 
   <section>
