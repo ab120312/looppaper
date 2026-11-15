@@ -3,9 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* Phone set to another of our languages? Show that page, unless the visitor chose a language with the switcher. */
+(function () {
+  var L = ["es", "pt", "de", "fr", "ru", "hi", "ja", "zh"], p = null;
+  try { p = localStorage.getItem("lp-lang"); } catch (x) {}
+  if (p) { if (p !== "en" && L.indexOf(p) >= 0) location.replace(p + "/" + location.hash); return; }
+  var n = navigator.languages || [navigator.language || "en"];
+  for (var i = 0; i < n.length; i++) {
+    var c = String(n[i] || "").slice(0, 2).toLowerCase();
+    if (c === "en") return;
+    if (L.indexOf(c) >= 0) { location.replace(c + "/" + location.hash); return; }
+  }
+})();
+</script>
 <title>LoopPaper: Live Video Wallpaper for Android</title>
 <meta name="description" content="Turn your own videos, GIFs and photos into a live wallpaper on Android. 123 transitions, a clock behind your subject, playlists that change on their own. Free, no ads, no account.">
 <link rel="canonical" href="https://ab120312.github.io/looppaper/">
+<link rel="alternate" hreflang="en" href="https://ab120312.github.io/looppaper/">
+<link rel="alternate" hreflang="es" href="https://ab120312.github.io/looppaper/es/">
+<link rel="alternate" hreflang="pt" href="https://ab120312.github.io/looppaper/pt/">
+<link rel="alternate" hreflang="de" href="https://ab120312.github.io/looppaper/de/">
+<link rel="alternate" hreflang="fr" href="https://ab120312.github.io/looppaper/fr/">
+<link rel="alternate" hreflang="ru" href="https://ab120312.github.io/looppaper/ru/">
+<link rel="alternate" hreflang="hi" href="https://ab120312.github.io/looppaper/hi/">
+<link rel="alternate" hreflang="ja" href="https://ab120312.github.io/looppaper/ja/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ab120312.github.io/looppaper/zh/">
+<link rel="alternate" hreflang="x-default" href="https://ab120312.github.io/looppaper/">
 <link rel="icon" href="favicon.png" type="image/png">
 <meta name="theme-color" content="#121212">
 <meta property="og:type" content="website">
@@ -13,6 +37,7 @@
 <meta property="og:description" content="Your videos, GIFs and photos as a living wallpaper. 123 transitions. Free on Google Play, no ads.">
 <meta property="og:image" content="https://ab120312.github.io/looppaper/img/og.jpg">
 <meta property="og:url" content="https://ab120312.github.io/looppaper/">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
@@ -21,11 +46,16 @@
   "name": "LoopPaper: Video Wallpaper",
   "operatingSystem": "Android",
   "applicationCategory": "LifestyleApplication",
+  "inLanguage": "en",
   "description": "Turn your own videos, GIFs and photos into a live wallpaper on Android, with 123 transitions, playlists and a clock behind your subject.",
   "image": "https://ab120312.github.io/looppaper/img/icon-192.png",
   "url": "https://ab120312.github.io/looppaper/",
   "downloadUrl": "https://play.google.com/store/apps/details?id=app.looppaper",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 }
 </script>
 <script type="application/ld+json">
@@ -33,16 +63,46 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "How do I set a video as my wallpaper on Android?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Install LoopPaper, tap Choose, pick any video or GIF from your phone, watch it loop in the preview, then tap Set wallpaper. You can also tap Share on a video in Gallery or Google Photos and pick LoopPaper."}},
-    {"@type": "Question", "name": "Is LoopPaper free?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Setting any video, GIF or photo as your live wallpaper is free, with no ads, no watermark and no account. LoopPaper Plus is an optional one-time purchase that unlocks unlimited playlists, all 123 transitions and the extra effects."}},
-    {"@type": "Question", "name": "Can my wallpaper change automatically?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Make a playlist of videos, GIFs and photos and LoopPaper switches between them on its own, with a transition between each one, and shuffle never repeats until everything has played."}},
-    {"@type": "Question", "name": "Does a live wallpaper drain the battery?",
-     "acceptedAnswer": {"@type": "Answer", "text": "LoopPaper rests whenever your screen is off and can pause in battery saver, so it only works while you are looking at it."}},
-    {"@type": "Question", "name": "Are my photos uploaded anywhere?",
-     "acceptedAnswer": {"@type": "Answer", "text": "No. Your files stay on your phone. LoopPaper never uploads them, and everything it does to a photo runs on the phone."}}
+    {
+      "@type": "Question",
+      "name": "How do I set a video as my wallpaper on Android?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Install LoopPaper, tap Choose, pick any video or GIF from your phone, watch it loop in the preview, then tap Set wallpaper. You can also tap Share on a video in Gallery or Google Photos and pick LoopPaper."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is LoopPaper free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Setting any video, GIF or photo as your live wallpaper is free, with no ads, no watermark and no account. LoopPaper Plus is an optional one-time purchase that unlocks unlimited playlists, all 123 transitions and the extra effects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my wallpaper change automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Make a playlist of videos, GIFs and photos and LoopPaper switches between them on its own, with a transition between each one, and shuffle never repeats until everything has played."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a live wallpaper drain the battery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LoopPaper rests whenever your screen is off and can pause in battery saver, so it only works while you are looking at it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my photos uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your files stay on your phone. LoopPaper never uploads them, and everything it does to a photo runs on the phone."
+      }
+    }
   ]
 }
 </script>
@@ -58,6 +118,9 @@ a { color:var(--honey); }
 header { padding:22px 0; display:flex; align-items:center; gap:12px; }
 header img { width:40px; height:40px; border-radius:10px; }
 header b { font-family:"Fraunces",serif; font-weight:500; font-size:22px; }
+.lang { margin-left:auto; }
+.lang select { background:var(--card); color:var(--text); border:1px solid #34312d; border-radius:999px; padding:8px 12px; font:inherit; font-size:15px; max-width:44vw; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
 .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding:36px 0 56px; }
 h1 { font-family:"Fraunces",serif; font-weight:450; font-size:clamp(36px,5.4vw,60px); line-height:1.08; margin:0 0 18px; }
 h1 em { color:var(--honey); font-style:normal; }
@@ -86,7 +149,8 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
 </head>
 <body>
 <div class="wrap">
-  <header><img src="img/icon-192.png" alt="LoopPaper icon" width="40" height="40"><b>LoopPaper</b></header>
+  <header><img src="img/icon-192.png" alt="LoopPaper icon" width="40" height="40"><b>LoopPaper</b>
+    <label class="lang"><span class="sr">Language</span><select onchange="lpLang(this)" aria-label="Language"><option value="en" selected>English</option><option value="es">Español</option><option value="pt">Português</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="ru">Русский</option><option value="hi">हिन्दी</option><option value="ja">日本語</option><option value="zh">中文</option></select></label></header>
 
   <div class="hero">
     <div>
@@ -100,7 +164,7 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
 
   <section>
     <h2>See it in motion</h2>
-    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/9yVl9bKPXXo" title="LoopPaper live video wallpaper trailer" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/9yVl9bKPXXo?hl=en&amp;cc_lang_pref=en" title="LoopPaper live video wallpaper trailer" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
   </section>
 
   <section>
@@ -148,5 +212,11 @@ footer { padding:40px 0 60px; color:var(--text2); font-size:15px; border-top:1px
     Google Play and the Google Play logo are trademarks of Google LLC.
   </footer>
 </div>
+<script>
+function lpLang(s) {
+  var v = s.value; try { localStorage.setItem("lp-lang", v); } catch (x) {}
+  location.href = "https://ab120312.github.io/looppaper/" + (v === "en" ? "" : v + "/");
+}
+</script>
 </body>
 </html>
